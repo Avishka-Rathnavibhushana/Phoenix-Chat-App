@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:pheonix_chat_app/app.dart';
+import 'package:pheonix_chat_app/pages/vlc_transmitter_page.dart';
 import 'package:pheonix_chat_app/theme.dart';
 import 'package:stream_chat_flutter_core/stream_chat_flutter_core.dart';
 import 'package:pheonix_chat_app/screens/screens.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  // await Firebase.initializeApp();
+
   final client = StreamChatClient(streamKey);
 
   runApp(
@@ -40,7 +44,7 @@ class MyApp extends StatelessWidget {
           ),
         );
       },
-      home: const SelectUserScreen(),
+      home: SelectUserScreen(),
     );
   }
 }

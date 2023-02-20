@@ -1,8 +1,7 @@
 import 'package:pheonix_chat_app/app.dart';
-import 'package:pheonix_chat_app/pages/calls_page.dart';
 import 'package:pheonix_chat_app/pages/contacts_page.dart';
 import 'package:pheonix_chat_app/pages/messages_page.dart';
-import 'package:pheonix_chat_app/pages/notifications_page.dart';
+import 'package:pheonix_chat_app/pages/vlc_transmitter_page.dart';
 import 'package:pheonix_chat_app/theme.dart';
 import 'package:pheonix_chat_app/widgets/widgets.dart';
 import 'package:flutter/cupertino.dart';
@@ -17,16 +16,13 @@ class HomeScreen extends StatelessWidget {
 
   final pages = const [
     MessagesPage(),
-    NotificationsPage(),
-    CallsPage(),
+    VLCTransmitterPage(),
     ContactsPage(),
   ];
 
   final pageTitles = const [
     'Messages',
-    'Notifications',
-    'Calls',
-    'Contacts',
+    'VLC Transmitter',
   ];
 
   void _onNavigationItemSelected(index) {
@@ -41,28 +37,19 @@ class HomeScreen extends StatelessWidget {
         iconTheme: Theme.of(context).iconTheme,
         backgroundColor: Colors.transparent,
         elevation: 0,
-        title: ValueListenableBuilder(
-          valueListenable: title,
-          builder: (BuildContext context, String value, _) {
-            return Text(
-              value,
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 17,
-              ),
-            );
-          },
-        ),
+        // title: ValueListenableBuilder(
+        //   valueListenable: title,
+        //   builder: (BuildContext context, String value, _) {
+        //     return Text(
+        //       value,
+        //       style: const TextStyle(
+        //         fontWeight: FontWeight.bold,
+        //         fontSize: 17,
+        //       ),
+        //     );
+        //   },
+        // ),
         leadingWidth: 54,
-        leading: Align(
-          alignment: Alignment.centerRight,
-          child: IconBackground(
-            icon: Icons.search,
-            onTap: () {
-              print('TODO search');
-            },
-          ),
-        ),
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 24.0),
@@ -124,7 +111,8 @@ class __BottomNavigationBarState extends State<_BottomNavigationBar> {
         top: false,
         bottom: true,
         child: Padding(
-          padding: const EdgeInsets.only(top: 16, left: 8, right: 8),
+          padding:
+              const EdgeInsets.only(top: 16, left: 8, right: 8, bottom: 10),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
@@ -133,13 +121,6 @@ class __BottomNavigationBarState extends State<_BottomNavigationBar> {
                 lable: 'Messages',
                 icon: CupertinoIcons.bubble_left_bubble_right_fill,
                 isSelected: (selectedIndex == 0),
-                onTap: handleItemSelected,
-              ),
-              _NavigationBarItem(
-                index: 1,
-                lable: 'Notifications',
-                icon: CupertinoIcons.bell_solid,
-                isSelected: (selectedIndex == 1),
                 onTap: handleItemSelected,
               ),
               Padding(
@@ -161,19 +142,13 @@ class __BottomNavigationBarState extends State<_BottomNavigationBar> {
                 ),
               ),
               _NavigationBarItem(
-                index: 2,
-                lable: 'Calls',
-                icon: CupertinoIcons.phone_fill,
-                isSelected: (selectedIndex == 2),
+                index: 1,
+                lable: 'VLC',
+                icon: CupertinoIcons.lightbulb,
+                isSelected: (selectedIndex == 1),
                 onTap: handleItemSelected,
               ),
-              _NavigationBarItem(
-                index: 3,
-                lable: 'Contacts',
-                icon: CupertinoIcons.person_2_fill,
-                isSelected: (selectedIndex == 3),
-                onTap: handleItemSelected,
-              ),
+              
             ],
           ),
         ),
